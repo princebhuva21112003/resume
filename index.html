@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Bhuva | AI & ML Developer</title>
+    
+    <!-- FontAwesome & Fonts -->
+    <script src="https://kit.fontawesome.com/f5c9131898.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        /* Modern CSS Reset & Variables */
+        /* Modern CSS Reset & Variables */
+:root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --gradient: linear-gradient(135deg, #38bdf8, #818cf8);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Glassmorphism Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 5%;
+    position: relative;
+    width: 100%;
+}
+
+/* Hamburger Menu Icon */
+.menu-btn {
+    display: none;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    transition: 0.3s ease-in-out;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* Hero Section */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 5% 2rem;
+    background: url('background.jpg') center/cover no-repeat;
+    position: relative;
+    width: 100%;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.85);
+    z-index: 1;
+}
+
+#hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 600px;
+}
+
+.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+    margin-bottom: 2rem;
+    background-color: white;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.social-icons a {
+    color: var(--text-main);
+    font-size: 1.5rem;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
+/* Section Global Styles */
+section {
+    padding: 5rem 10%;
+    width: 100%;
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.section-heading i {
+    color: var(--accent);
+}
+
+/* About Section */
+#about p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.text-highlight {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Skills Grid */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.skill-category {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+}
+
+.skill-category h3 {
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.5rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skill-tag {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Modern Timeline */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: var(--accent);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    background-color: var(--bg-dark);
+    border: 4px solid var(--accent);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.left { left: 0; }
+.right { left: 50%; }
+
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 18px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid var(--bg-card);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--bg-card);
+}
+
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 18px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid var(--bg-card);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--bg-card) transparent transparent;
+}
+.right::after { left: -8px; }
+
+.timeline-content {
+    padding: 1.5rem;
+    background-color: var(--bg-card);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.timeline-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: white;
+    padding: 5px;
+}
+
+.timeline-content h3 { color: var(--accent); font-size: 1.15rem; margin-bottom: 0.2rem;}
+.timeline-content h4 { font-weight: 500; font-size: 1rem; color: var(--text-main); }
+.timeline-date { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; display: block;}
+
+/* Scrollable Traveller Icons */
+.timeline-divider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 2;
+    transition: transform 0.15s ease-out;
+}
+
+.timeline-traveller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-dark);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    color: var(--accent);
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Swiper / Projects Grid */
+.swiper {
+    width: 100%;
+    padding: 20px 0 50px 0; 
+}
+
+.project-card {
+    background: var(--bg-card);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+    height: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: white; 
+}
+
+.project-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 200px);
+}
+
+.project-info h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.project-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1rem;
+    margin-top: auto;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.author-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.btn-readmore {
+    padding: 0.5rem 1rem;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.btn-readmore:hover { opacity: 0.9; }
+
+/* Custom Swiper Controls */
+.swiper-pagination-bullet { background: var(--text-muted); }
+.swiper-pagination-bullet-active { background: var(--accent); }
+.swiper-button-next, .swiper-button-prev { color: var(--accent); }
+
+/* Contact Section */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: var(--bg-card);
+    padding: 3rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+    width: 100%;
+}
+
+.contact-info { flex: 1; min-width: 250px; }
+.contact-form { flex: 2; min-width: 280px; width: 100%; }
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+.info-item p {
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.1);
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-group { margin-bottom: 1.5rem; flex: 1; width: 100%; }
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus { border-color: var(--accent); }
+textarea.form-control { resize: vertical; min-height: 120px; }
+
+.btn-submit {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    transition: opacity 0.3s;
+}
+
+.btn-submit:hover { opacity: 0.9; }
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    /* Mobile Navigation Grid Fix */
+    nav {
+        justify-content: space-between;
+        padding: 1rem 5%;
+    }
+    
+    .menu-btn {
+        display: block; 
+        order: 2; /* Forces it safely to the right end */
+    }
+    
+    nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-dark);
+        flex-direction: column;
+        padding: 1.5rem 5%;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        display: none; 
+    }
+    
+    nav ul.active {
+        display: flex;
+    }
+
+    /* Adjust Sizing and Spacing */
+    h1 { font-size: 2.2rem; }
+    .subtitle { font-size: 1.1rem; }
+    .profile-img { width: 140px; height: 140px; }
+    section { padding: 4rem 5%; }
+    .section-heading { font-size: 2rem; }
+
+    /* Contact Form Stacking Fixes */
+    .contact-container { padding: 1.5rem; gap: 1.5rem; }
+    .form-row { flex-direction: column; gap: 0; }
+
+    /* Timeline Mobile Fixes */
+    .timeline::after { left: 31px; }
+    .timeline-item { width: 100%; padding-left: 70px; padding-right: 15px; }
+    .timeline-item::before { 
+        left: 60px; 
+        border: medium solid white; 
+        border-width: 10px 10px 10px 0; 
+        border-color: transparent var(--bg-card) transparent transparent; 
+    }
+    .left::after, .right::after { left: 23px; }
+    .right { left: 0%; }
+    .timeline-divider { left: 31px; transform: translateX(-50%); }
+}
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div id="hero-content">
+                <img src="Asset 11.png" alt="Prince Bhuva" class="profile-img">
+                <h1>Prince Bhuva</h1>
+                <p class="subtitle">Hii, I am <span id="auto-type" style="color: var(--accent)"></span></p>
+                
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/prince-bhuva-a83894230?utm_source=share_via&utm_content=profile&utm_medium=member_android"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/prince.bhuva.188"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://github.com/princebhuva21112003"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-stack-overflow"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Skills Sections -->
+        <section id="about">
+            <h2 class="section-heading"><i class="fa-solid fa-user"></i> About Me</h2>
+            <p>
+                I’m <span class="text-highlight">Bhuva Prince</span>, an AI and Machine Learning enthusiast with a
+                strong background in <span class="text-highlight">Neural Networks, Large-Language-Models (LLMs),
+                and Retrieval-Augmented Generation (RAG)</span>. I work extensively with
+                <span class="text-highlight">Python, TensorFlow, Pandas, NumPy, and Scikit-learn</span> to build intelligent and data-driven solutions. Alongside AI, I have experience in <span class="text-highlight">Next.js, React, and Django</span>,
+                allowing me to integrate machine learning models into scalable web and mobile applications. My journey started with <span class="text-highlight">Java, Android, and Web development</span>,
+                where I built projects using <span class="text-highlight"> java, Firebase, Docker, and
+                MySQL</span>. I’ve also solved <span class="text-highlight">500+ Data Structures & Algorithms problems</span>
+                across platforms like LeetCode, Geeks-for-Geeks, and HackerRank, strengthening my problem-solving mindset for both development and AI-research. Currently, I am focused on applying <span class="text-highlight">deep learning, computer vision,
+                and LLM-based architectures</span> to create practical, real-world AI applications.
+            </p>
+        </section>
+
+        <section id="skills">
+    <h2 class="section-heading"><i class="fa-solid fa-code"></i> Technical Skills</h2>
+    <div class="skills-container">
+        <div class="skill-category">
+            <h3>Languages</h3>
+            <div class="skill-tags">
+                <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="skill-tag"><i class="fa-brands fa-java"></i> Java</span>
+                <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+                <span class="skill-tag"><i class="fa-solid fa-database"></i> SQL</span>
+                <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML/CSS</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>Libraries & Frameworks</h3>
+            <div class="skill-tags">
+                <span class="skill-tag"><i class="fa-solid fa-brain"></i> TensorFlow</span>
+                <span class="skill-tag"><i class="fa-solid fa-square-root-variable"></i> Scikit-learn</span>
+                <span class="skill-tag"><i class="fa-solid fa-table"></i> Pandas</span>
+                <span class="skill-tag"><i class="fa-solid fa-calculator"></i> NumPy</span>
+                <span class="skill-tag"><i class="fa-solid fa-bolt"></i> FastAPI</span>
+                <span class="skill-tag"><i class="fa-brands fa-python"></i> Django</span>
+                <span class="skill-tag"><i class="fa-brands fa-react"></i> React.js</span>
+                <span class="skill-tag"><i class="fa-solid fa-cubes"></i> Next.js</span>
+                <span class="skill-tag"><i class="fa-brands fa-node"></i> Node.js</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>Tools & Cloud</h3>
+            <div class="skill-tags">
+                <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git/GitHub</span>
+                <span class="skill-tag"><i class="fa-brands fa-aws"></i> AWS</span>
+                <span class="skill-tag"><i class="fa-solid fa-fire"></i> Firebase</span>
+                <span class="skill-tag"><i class="fa-brands fa-docker"></i> Docker</span>
+                <span class="skill-tag"><i class="fa-solid fa-book"></i> Jupyter Lab</span>
+                <span class="skill-tag"><i class="fa-solid fa-satellite-dish"></i> Postman</span>
+                <span class="skill-tag"><i class="fa-brands fa-figma"></i> Figma</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Experience Timeline -->
+        <section id="experience">
+            <h2 class="section-heading"><i class="fas fa-briefcase"></i> Work Experience</h2>
+            <div class="timeline" id="exp-timeline">
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <img src="https://divineinfosoft.com/wp-content/uploads/2021/01/Group-1.png.webp" class="timeline-logo" alt="Divine Infosoft">
+                            <div>
+                                <h3>Intern</h3>
+                                <h4>Divine Infosoft</h4>
+                            </div>
+                        </div>
+                        <span class="timeline-date">Jan 2025 - April 2025</span>
+                        <p>Developed a chatbot application using python, incorporating API libraries for enhanced functionality.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <img src="https://relevantinc.com/wp-content/uploads/2018/03/Header-Logo_Retina.png" class="timeline-logo" alt="Relevant">
+                            <div>
+                                <h3>Intern</h3>
+                                <h4>Relevant</h4>
+                            </div>
+                        </div>
+                        <span class="timeline-date">June 2024 - Nov 2024</span>
+                        <p>Gained practical experience in python and its libraries, teamwork and project management.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <!-- Placeholder icon if no company logo is available -->
+                            <i class="fas fa-building timeline-logo" style="display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--bg-dark);"></i>
+                            <div>
+                                <h3>Developer</h3>
+                                <h4>GM INFOTECH</h4>
+                            </div>
+                        </div>
+                        <span class="timeline-date">november 2025 - june 2026</span>
+                        <p>Gain knowledge in LLM, RAG and agentic ai.</p>
+                    </div>
+                </div>
+
+                <!-- Plane Icon -->
+                <div class="timeline-divider" id="plane-icon">
+                    <div class="timeline-traveller">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Timeline -->
+        <section id="education">
+            <h2 class="section-heading"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="timeline" id="edu-timeline">
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <img src="https://www.cvmu.edu.in/assets/images/cvm/heaer_logo_final.svg" class="timeline-logo" alt="ADIT Logo">
+                            <div>
+                                <h3>BE in IT</h3>
+                                <h4>ADIT</h4>
+                            </div>
+                        </div>
+                        <span class="timeline-date">Sept 2021 - April 2025 | Anand, Gujarat</span>
+                        <p>Completed Engineering in Information Technology.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <img src="https://play-lh.googleusercontent.com/lEfamXbu_AmUkk6GNFv8rbvW9FoVEkZ5q_v9D4tiplAK9jYAYjD06Nf1RU9xcF3Mcw=w480-h960-rw" class="timeline-logo" alt="Kaushal Vidhyalay Logo">
+                            <div>
+                                <h3>Secondary Education</h3>
+                                <h4>Kaushal Vidhyalay</h4>
+                            </div>
+                        </div>
+                        <span class="timeline-date">July 2017 - Oct 2021 | Surat, Gujarat</span>
+                        <p>Completed 9th to 12th standard (High school).</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <img src="https://data.zibma.com/Campus/37/2023/03/Thumb/6c597af4-eb36-4eb5-902b-2deb89fe0956.jpg" class="timeline-logo" alt="Ashadeep Vidhyalay Logo">
+                            <div>
+                                <h3>Primary Education</h3>
+                                <h4>Ashadeep Vidhyalay</h4>
+                            </div>
+                        </div>
+                        <span class="timeline-date">July 2009 - Oct 2017 | Surat, Gujarat</span>
+                        <p>Completed 1st to 8th standard.</p>
+                    </div>
+                </div>
+
+                <!-- Car Icon -->
+                <div class="timeline-divider" id="car-icon">
+                    <div class="timeline-traveller">
+                        <i class="fas fa-car"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="portfolio">
+            <h2 class="section-heading"><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+            
+            <div class="swiper projectSwiper">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <div class="project-card">
+                            <img src="AIchatbot.png" alt="AI Chatbot" class="project-img">
+                            <div class="project-info">
+                                <h3>AI Chatbot | Next.js + Web3</h3>
+                                <p>An advanced AI chatbot built with Next.js frontend, Python authentication, and MongoDB. Integrated with MetaMask Ethereum payments to enable secure Web3 transactions.</p>
+                                <div class="project-footer">
+                                    <div class="author-info">
+                                        <img src="j1.png" alt="Author">
+                                        <span>Clear Convo</span>
+                                    </div>
+                                    <a href="#" class="btn-readmore">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="project-card">
+                            <img src="RAGbaseaiassistent.png" alt="RAG AI Assistant" class="project-img">
+                            <div class="project-info">
+                                <h3>AI Assistant with RAG & SQL</h3>
+                                <p>An intelligent teaching assistant powered by Retrieval-Augmented Generation (RAG) and LLMs, capable of querying and processing SQL data to deliver precise answers.</p>
+                                <div class="project-footer">
+                                    <div class="author-info">
+                                        <img src="j1.png" alt="Author">
+                                        <span>ReGx</span>
+                                    </div>
+                                    <a href="#" class="btn-readmore">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="project-card">
+                            <img src="insurance_charge_prediction.png" alt="Weather Detection" class="project-img">
+                            <div class="project-info">
+                                <h3> AI-Powered Insurance Premium Predictor </h3>
+                                <p>An intelligent Android application that extracts user data from uploaded form images using OCR to instantly predict insurance charges. Powered by a FastAPI backend deployed on Render, the system utilizes an evaluated machine learning pipeline (ANN, Decision Trees, Linear Regression) for accurate cost estimation. Integrated with Firebase for secure user authentication and search history management.</p>
+                                <div class="project-footer">
+                                    <div class="author-info">
+                                        <img src="j1.png" alt="Author">
+                                        <span>PRIDICT THE CHARGES</span>
+                                    </div>
+                                    <a href="#" class="btn-readmore">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="project-card">
+                            <img src="freelancing.png" alt="Smart E-Commerce" class="project-img">
+                            <div class="project-info">
+                                <h3>Smart E-Commerce Android App</h3>
+                                <p>A feature-rich e-commerce Android application powered by Firebase and SQLite, integrated with machine learning models for Object detection.</p>
+                                <div class="project-footer">
+                                    <div class="author-info">
+                                        <img src="j1.png" alt="Author">
+                                        <span>Ecom</span>
+                                    </div>
+                                    <a href="#" class="btn-readmore">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+
+<section id="contact">
+    <h2 class="section-heading"><i class="fa-solid fa-paper-plane"></i> Get In Touch</h2>
+    <div class="contact-container">
+        <div class="contact-info">
+            <div class="info-item">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h4>Phone</h4>
+                    <p>+91 9173180854</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div style="min-width: 0; word-break: break-all; overflow-wrap: anywhere;">
+                    <h4>Email</h4>
+                    <p>princebhuva21112003@gmail.com</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h4>Location</h4>
+                    <p>Surat, Gujarat</p>
+                </div>
+            </div>
+        </div>
+        
+        <form class="contact-form" onsubmit="event.preventDefault();">
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Subject" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Say Something..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+    </div>
+</section>
+    </main>
+
+    <!-- JS Scripts -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links li a');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Typing Effect configuration
+        var typed = new Typed('#auto-type', {
+            strings: ['Android Developer', 'Web Developer', 'AI / ML Developer'],
+            typeSpeed: 100,
+            backSpeed: 50,
+            loop: true
+        });
+
+        // Initialize Swiper Slider
+        var swiper = new Swiper(".projectSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+            },
+        });
+
+        // --- Scroll Animation for Plane and Car Icons ---
+        document.addEventListener("scroll", () => {
+            const moveIconOnScroll = (timelineId, iconId) => {
+                const timeline = document.getElementById(timelineId);
+                const icon = document.getElementById(iconId);
+                
+                if (!timeline || !icon) return;
+
+                const rect = timeline.getBoundingClientRect();
+                const viewportCenter = window.innerHeight / 2;
+                
+                // Calculate distance from top of the timeline to center of the viewport
+                let scrolledDistance = viewportCenter - rect.top;
+                
+                // Keep the icon inside the timeline boundaries
+                const maxDistance = rect.height;
+                if (scrolledDistance < 0) scrolledDistance = 0;
+                if (scrolledDistance > maxDistance) scrolledDistance = maxDistance;
+
+                // Move the icon dynamically on the Y axis based on scroll progress
+                icon.style.transform = `translateX(-50%) translateY(${scrolledDistance}px)`;
+            };
+
+            // Call function for both timelines
+            moveIconOnScroll("exp-timeline", "plane-icon");
+            moveIconOnScroll("edu-timeline", "car-icon");
+        });
+    </script>
+</body>
+</html>
