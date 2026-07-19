@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | Case Study</title>
+    <style>
+        /* CSS Variables for Modern Dark Theme */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            margin-bottom: 3rem;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+        }
+
+        /* Section Styling */
+        .section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Tags */
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Architecture Diagram Placeholder */
+        .diagram-container {
+            width: 100%;
+            height: 300px;
+            background: #111827;
+            border: 2px dashed #334155;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        /* Expandable Accordion (JS needed) */
+        .accordion-item {
+            border: 1px solid #334155;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: #111827;
+        }
+
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 500px;
+            /* Arbitrary large number */
+        }
+
+        .code-snippet {
+            font-family: monospace;
+            background: #000;
+            padding: 1rem;
+            border-radius: 6px;
+            color: #10b981;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <a href="index.html" class="back-btn">
+                <span>←</span> Back to Portfolio
+            </a>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="tech-tags" style="justify-content: center;">
+                <span class="tag">Android Studio</span>
+                <span class="tag">Java</span>
+                <span class="tag">Python Flask</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">Machine Learning</span>
+            </div>
+            <h1>Smart Predictive System</h1>
+            <p>A full-stack mobile application that integrates an Android frontend with a Python Flask API to deliver
+                real-time machine learning predictions using Linear Regression, Decision tree and ANN (Compare the charges) directly to the user.</p>
+
+            <div class="btn-group">
+                <a href="https://github.com/princebhuva21112003/Insurance_Price_Pridictor_app"
+                    class="btn btn-primary">View GitHub Repo</a>
+                <a href="https://appetize.io/embed/b_knf74nsfn523jo5cpoxgbvaxcu" class="btn btn-outline">Live Demo /
+                    APK</a>
+            </div>
+        </header>
+
+        <!-- Problem & Solution -->
+        <section class="section">
+            <h2>The Problem & Solution</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: #f87171; margin-bottom: 0.5rem;">The Problem</h3>
+                    <p class="text-muted">Users lacked a way to get accurate, on-the-go predictions without relying on
+                        heavy client-side processing. Local machine learning models were draining battery life and
+                        proving difficult to update seamlessly on mobile devices.</p>
+                </div>
+                <div>
+                    <h3 style="color: #4ade80; margin-bottom: 0.5rem;">The Solution</h3>
+                    <p class="text-muted">I developed a lightweight Android frontend that outsources heavy computation.
+                        By establishing a global Python Flask API, the mobile app sends data securely to a cloud
+                        environment where trained Regression and Classification models process the data and return
+                        instant results.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Diagram -->
+        <section class="section">
+            <h2>System Architecture</h2>
+            <p>Visualizing the data flow between the mobile client, the cloud API, and the database.</p>
+            <div class="diagram-container">
+                <p>
+                    <style>
+                        .diagram-container {
+                            width: 100%;
+                            padding: 2.5rem 1rem;
+                            background: #111827;
+                            border: 1px solid #334155;
+                            border-radius: 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            overflow-x: auto;
+                            /* Allows smooth scrolling on mobile */
+                            margin-top: 1rem;
+                        }
+
+                        .diag-wrapper {
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            min-width: max-content;
+                        }
+
+                        .diag-box {
+                            background: #1e293b;
+                            border: 2px solid #334155;
+                            border-radius: 8px;
+                            padding: 12px 16px;
+                            text-align: center;
+                            color: #f8fafc;
+                            font-size: 0.85rem;
+                            font-weight: 500;
+                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                            line-height: 1.4;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            min-width: 110px;
+                        }
+
+                        /* Custom Node Colors */
+                        .diag-box.android {
+                            border-color: #10b981;
+                            background: rgba(16, 185, 129, 0.05);
+                        }
+
+                        .diag-box.flask {
+                            border-color: #3b82f6;
+                            background: rgba(59, 130, 246, 0.05);
+                        }
+
+                        .diag-box.ml {
+                            border-color: #8b5cf6;
+                            background: rgba(139, 92, 246, 0.05);
+                        }
+
+                        .diag-box.firebase {
+                            border-color: #f59e0b;
+                            background: rgba(245, 158, 11, 0.05);
+                        }
+
+                        .diag-group {
+                            border: 2px dashed #475569;
+                            border-radius: 12px;
+                            padding: 25px 15px 15px;
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            background: rgba(15, 23, 42, 0.4);
+                        }
+
+                        .diag-group-label {
+                            position: absolute;
+                            top: -12px;
+                            left: 20px;
+                            background: #111827;
+                            padding: 0 10px;
+                            color: #94a3b8;
+                            font-weight: 600;
+                            font-size: 0.8rem;
+                            letter-spacing: 0.5px;
+                        }
+
+                        .diag-arrow {
+                            color: #64748b;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            font-size: 0.7rem;
+                            font-weight: 600;
+                            letter-spacing: 0.5px;
+                            text-transform: uppercase;
+                        }
+
+                        .diag-arrow span {
+                            font-size: 1.4rem;
+                            margin-top: -4px;
+                        }
+
+                        .diag-col {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+                        }
+
+                        .diag-icon {
+                            font-size: 1.4rem;
+                            margin-bottom: 6px;
+                            display: block;
+                        }
+                    </style>
+
+                <div class="diagram-container">
+                    <div class="diag-wrapper">
+
+                        <!-- Step 1: Client Input -->
+                        <div class="diag-box android">
+                            <span class="diag-icon">📱</span>
+                            Android App<br>(Input / OCR)
+                        </div>
+
+                        <div class="diag-arrow">
+                            HTTP POST
+                            <span>→</span>
+                        </div>
+
+                        <!-- Step 2 & 3: Cloud Processing -->
+                        <div class="diag-group">
+                            <div class="diag-group-label">☁️ Cloud Backend</div>
+
+                            <div class="diag-box flask">
+                                <span class="diag-icon">🌐</span>
+                                Python<br>Flask API
+                            </div>
+
+                            <div class="diag-arrow">
+                                Predict
+                                <span>→</span>
+                            </div>
+
+                            <div class="diag-box ml">
+                                <span class="diag-icon">🧠</span>
+                                ML Model<br>(LR / DT / ANN)
+                            </div>
+                        </div>
+
+                        <div class="diag-arrow">
+                            JSON
+                            <span>→</span>
+                        </div>
+
+                        <!-- Step 4: Storage & Output -->
+                        <div class="diag-col">
+                            <div class="diag-box firebase">
+                                <span class="diag-icon">🔥</span>
+                                Firebase DB<br>(History)
+                            </div>
+                            <div class="diag-box android">
+                                <span class="diag-icon">✅</span>
+                                Android UI<br>(Update)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                </p>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                <strong>Flow:</strong> User Input (Android UI) → HTTP POST Request → Python Flask API → ML Model
+                (Decision Tree/KNN) → JSON Response → Firebase (History Tracking) → Android UI Update.
+            </p>
+        </section>
+
+        <!-- Technical Deep Dive -->
+        <section class="section">
+            <h2>Technical Deep Dive</h2>
+
+            <!-- Accordion Item 1 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    1. Cloud API Integration & Model Deployment
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Instead of packing models into the APK, I deployed a Flask server. This allowed me to leverage
+                        Python's robust data science ecosystem. The server accepts JSON payloads, processes the data
+                        through trained models, and returns the predictions.</p>
+                    <span class="code-snippet">@app.route('/predict', methods=['POST'])<br>def
+                        predict():<br>&nbsp;&nbsp;&nbsp;&nbsp;data =
+                        request.get_json()<br>&nbsp;&nbsp;&nbsp;&nbsp;prediction =
+                        model.predict(data['features'])<br>&nbsp;&nbsp;&nbsp;&nbsp;return jsonify({'result':
+                        prediction[0]})</span>
+                </div>
+            </div>
+
+            <!-- Accordion Item 2 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    2. Firebase Authentication & Realtime History
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>To ensure a personalized user experience, I integrated Firebase for secure user registration and
+                        login. Furthermore, all search histories and prediction results are pushed to the Firebase
+                        Realtime Database, allowing users to view their past activity seamlessly within the Android
+                        RecyclerView.</p>
+                </div>
+            </div>
+
+            <!-- Accordion Item 3 -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    3. Text Recognition / OCR Processing
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>To reduce manual data entry friction, I integrated OCR capabilities. Users can snap a picture of
+                        standard forms, and the app extracts the relevant text, formats it, and auto-populates the input
+                        fields before sending the data to the Flask API.</p>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- JavaScript for Accordion Logic -->
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('span');
+
+                // Toggle active class
+                button.classList.toggle('active');
+
+                if (button.classList.contains('active')) {
+                    accordionContent.classList.add('active');
+                    icon.textContent = '-';
+                } else {
+                    accordionContent.classList.remove('active');
+                    icon.textContent = '+';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

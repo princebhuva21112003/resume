@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentimentScope | Case Study</title>
+    <style>
+        /* CSS Variables for Modern Dark Theme */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            margin-bottom: 3rem;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+        }
+
+        /* Section Styling */
+        .section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Tags */
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Architecture Diagram Placeholder */
+        .diagram-container {
+            width: 100%;
+            height: 350px;
+            background: #111827;
+            border: 2px dashed #334155;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        /* Expandable Accordion */
+        .accordion-item {
+            border: 1px solid #334155;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.02);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: #111827;
+        }
+
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 800px; /* Arbitrary large number */
+        }
+        
+        .code-snippet {
+            font-family: monospace;
+            background: #000;
+            padding: 1rem;
+            border-radius: 6px;
+            color: #10b981;
+            margin-top: 1rem;
+            display: block;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-bar">
+            <a href="index.html" class="back-btn">
+                <span>←</span> Back to Portfolio
+            </a>
+        </nav>
+
+        <header class="hero">
+            <div class="tech-tags" style="justify-content: center;">
+                <span class="tag">Python Flask</span>
+                <span class="tag">NLP</span>
+                <span class="tag">Docker</span>
+                <span class="tag">AWS EC2</span>
+                <span class="tag">Amazon S3</span>
+                <span class="tag">Logistic Regression</span>
+            </div>
+            <h1>SentimentScope Engine</h1>
+            <p>An end-to-end, fully containerized machine learning pipeline deployed on AWS that predicts user sentiment in real-time utilizing custom Natural Language Processing techniques.</p>
+            
+            <div class="btn-group">
+                <a href="http://3.109.121.135:8000" class="btn btn-primary">View Live Demo</a>
+                <a href="" class="btn btn-outline">View GitHub Repo</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>The Problem & Solution</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: #f87171; margin-bottom: 0.5rem;">The Challenge</h3>
+                    <p class="text-muted">Analyzing user feedback at scale is difficult without an automated system. Standard models often fail to capture the nuances of raw text data without proper cleaning, and deploying these models globally requires a robust, scalable infrastructure that doesn't break under load.</p>
+                </div>
+                <div>
+                    <h3 style="color: #4ade80; margin-bottom: 0.5rem;">The Solution</h3>
+                    <p class="text-muted">I engineered a custom NLP pipeline to clean and vectorize text using TF-IDF. The processed data is fed into a highly optimized Logistic Regression model. To ensure seamless scalability and global access, the entire Flask API environment is Dockerized and hosted on an AWS EC2 instance, with historical data safely archived in an S3 bucket.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Pipeline Architecture</h2>
+            <p>A visual breakdown of the data journey from raw user input to AWS cloud storage.</p>
+            <div class="diagram-container">
+                <p><style>
+    .diagram-container {
+        width: 100%;
+        padding: 2.5rem 1rem;
+        background: #111827;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: auto; /* Allows scrolling on small screens */
+        margin-top: 1rem;
+    }
+
+    .diag-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        min-width: max-content;
+    }
+
+    .diag-box {
+        background: #1e293b;
+        border: 2px solid #334155;
+        border-radius: 8px;
+        padding: 12px 16px;
+        text-align: center;
+        color: #f8fafc;
+        font-size: 0.85rem;
+        font-weight: 500;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        line-height: 1.4;
+    }
+
+    .diag-box.highlight { border-color: #3b82f6; }
+    .diag-box.success { border-color: #10b981; background: rgba(16, 185, 129, 0.05); }
+    .diag-box.aws { border-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
+
+    .diag-group {
+        border: 2px dashed #3b82f6;
+        border-radius: 12px;
+        padding: 25px 15px 15px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(59, 130, 246, 0.03);
+    }
+
+    .diag-group-label {
+        position: absolute;
+        top: -12px;
+        left: 20px;
+        background: #111827;
+        padding: 0 10px;
+        color: #3b82f6;
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+
+    .diag-arrow {
+        color: #64748b;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .diag-col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .diag-icon {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+        display: block;
+    }
+</style>
+
+<div class="diagram-container">
+    <div class="diag-wrapper">
+        <div class="diag-box">
+            <span class="diag-icon">📝</span>
+            Raw Text<br>Input
+        </div>
+        
+        <div class="diag-arrow">→</div>
+        
+        <div class="diag-group">
+            <div class="diag-group-label">🐳 Dockerized Flask API (AWS EC2)</div>
+            
+            <div class="diag-box highlight">
+                <span class="diag-icon">🧹</span>
+                spaCy NLP<br>(Token/Lemma)
+            </div>
+            
+            <div class="diag-arrow">→</div>
+            
+            <div class="diag-box highlight">
+                <span class="diag-icon">🔢</span>
+                TF-IDF<br>Vectorizer
+            </div>
+            
+            <div class="diag-arrow">→</div>
+            
+            <div class="diag-box highlight">
+                <span class="diag-icon">🧠</span>
+                LogReg Model<br>(91% Acc)
+            </div>
+        </div>
+        
+        <div class="diag-arrow">→</div>
+        
+        <div class="diag-col">
+            <div class="diag-box success">
+                <span class="diag-icon">✅</span>
+                JSON<br>Prediction
+            </div>
+            <div class="diag-box aws">
+                <span class="diag-icon">🪣</span>
+                Amazon S3<br>Data Logging
+            </div>
+        </div>
+    </div>
+</div></p>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                <strong>Data Flow:</strong> Raw Text Input → NLP Preprocessing (Tokenization/Lemmatization) → Feature Engineering (TF-IDF Vectorization) → Dockerized Flask API → Logistic Regression Model (91% Accuracy) → JSON Prediction Response → Amazon S3 Logging.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Technical Deep Dive</h2>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    1. Custom NLP Preprocessing & Feature Engineering
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Raw text data is inherently messy. Before feeding data to the model, I utilized the spaCy library for robust text cleaning, handling tokenization, stop-word removal, and lemmatization. For feature extraction, I implemented a TF-IDF (Term Frequency-Inverse Document Frequency) vectorizer to transform the text into a meaningful numerical format that the regression model can process efficiently.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    2. Model Training & Containerization (Docker)
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>The core intelligence is powered by a Logistic Regression model, chosen for its speed and effectiveness in binary classification tasks. The model achieved a 91% accuracy rate on the evaluation metrics. To eliminate the "it works on my machine" problem, I wrapped the Python Flask API, the trained model file (.pkl), and all dependencies into a Docker container.</p>
+                    <span class="code-snippet"># Example Dockerfile snippet
+FROM python:3.9-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 5000
+CMD ["python", "app.py"]</span>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    3. AWS EC2 Deployment & S3 Data Logging
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>The Docker image is deployed on an AWS EC2 instance, serving as a reliable endpoint for client applications. To create a continuous feedback loop for future model retraining, every prediction payload, along with its calculated confidence score (e.g., Mood: POSITIVE, Confidence: 0.96), is automatically serialized and archived into an Amazon S3 Bucket via the Boto3 library.</p>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('span');
+                
+                // Toggle active class
+                button.classList.toggle('active');
+                
+                if (button.classList.contains('active')) {
+                    accordionContent.classList.add('active');
+                    icon.textContent = '-';
+                } else {
+                    accordionContent.classList.remove('active');
+                    icon.textContent = '+';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
