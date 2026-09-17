@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated CA & ITR Platform | Case Study</title>
+    <style>
+        /* CSS Variables for Modern Dark Theme */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            margin-bottom: 3rem;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+        }
+
+        /* Section Styling */
+        .section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Tags */
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Architecture Diagram Container */
+        .diagram-container {
+            width: 100%;
+            background: #111827;
+            border: 2px dashed #334155;
+            border-radius: 12px;
+            margin-top: 1rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .diagram-container pre {
+            margin: 0;
+            font-family: monospace;
+            color: var(--success);
+            line-height: 1.2;
+            font-size: 0.85rem;
+        }
+
+        /* Expandable Accordion */
+        .accordion-item {
+            border: 1px solid #334155;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.02);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: #111827;
+        }
+
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 800px;
+        }
+        
+        .code-snippet {
+            font-family: monospace;
+            background: #000;
+            padding: 1rem;
+            border-radius: 6px;
+            color: var(--success);
+            margin-top: 1rem;
+            display: block;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-bar">
+            <a href="index.html" class="back-btn">
+                <span>←</span> Back to Portfolio
+            </a>
+        </nav>
+
+        <header class="hero">
+            <div class="tech-tags" style="justify-content: center;">
+                <span class="tag">LangGraph</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Advanced RAG</span>
+                <span class="tag">OpenAI API</span>
+                <span class="tag">Docker</span>
+            </div>
+            <h1>Automated CA & ITR Platform</h1>
+            <p>An enterprise-grade, multi-lingual tax automation system featuring Voice UI, Advanced RAG for CA syllabus navigation, and autonomous browser agents with Human-in-the-Loop CAPTCHA resolution.</p>
+            
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">View Live Demo</a>
+                <a href="https://github.com/princebhuva21112003/TaxCore-AI" class="btn btn-outline">View GitHub Repo</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Overview</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">The Engineering Goal</h3>
+                    <p class="text-muted">Automating complex Indian tax compliance is historically rigid and prone to friction. The objective was to build an intelligent, language-agnostic FDE (Forward Deployed Engineering) platform capable of answering CA final syllabus queries accurately, mapping conversational intents, and autonomously executing multi-step tax filings on government portals while handling real-world roadblocks like CAPTCHAs.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--success); margin-bottom: 0.5rem;">The Approach</h3>
+                    <p class="text-muted">I developed a FastAPI backend orchestrating a LangGraph state-machine. Playwright handles secure portal navigation (downloading prefill.json, AIS/TIS) and structures data into Excel. I built a dynamic HTML/JS frontend featuring a Voice UI (STT/TTS) and a HITL (Human-in-the-Loop) chat interface for seamless CAPTCHA resolution. The entire system uses the OpenAI API for multilingual translation and is containerized via Docker.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Platform Architecture</h2>
+            <p>Visualizing the agentic workflow from multi-modal user input to government portal execution.</p>
+            <div class="diagram-container">
+                <pre>+-------------------------------------------------------------------------+
+|                          USERS (Multilingual)                           |
+|            [ Voice Input (Mic) ]          [ Text / Chat UI ]            |
++--------------------+------------------------------------+---------------+
+                     |                                    |
+                     v                                    v
++-------------------------------------------------------------------------+
+|                     FRONTEND (HTML / CSS / JS)                          |
+|      [ Text-to-Speech (TTS) ]        [ CAPTCHA Resolution UI ]          |
++-------------------------------------------------------------------------+
+                                     |
+                                     v
++-------------------------------------------------------------------------+
+|                        FASTAPI BACKEND (Docker)                         |
+|                                                                         |
+|  +-------------------+                        +----------------------+  |
+|  |    OPENAI API     |                        |   VECTOR DATABASE    |  |
+|  | (Multilingual &   |<--- Advanced RAG ----->| (CA Final Syllabus)  |  |
+|  |  Intent Mapping)  |                        |                      |  |
+|  +-------------------+                        +----------------------+  |
+|           |                                              ^              |
+|           v                                              |              |
+|  +---------------------------------------------------------------+      |
+|  |                   LANGGRAPH ORCHESTRATOR                      |      |
+|  |   [ State Management ] [ Fallback Logic ] [ HITL Trigger ]    |      |
+|  +---------------------------------------------------------------+      |
+|                                 |                                       |
+|                                 v                                       |
+|  +---------------------------------------------------------------+      |
+|  |                      PLAYWRIGHT AGENT                         |      |
+|  |  - Navigate Gov Portal        - Download prefill.json, AIS/TIS|      |
+|  |  - Intercept CAPTCHAs         - Parse to Excel / Autofill     |      |
+|  +---------------------------------------------------------------+      |
++-------------------------------------------------------------------------+</pre>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                <strong>Flow:</strong> User Input (Voice/Text) ↔ OpenAI Translation ↔ LangGraph Orchestrator ↔ Playwright (Portal Action) / Vector DB (CA Queries) ↔ HITL CAPTCHA fallback to UI.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Technical Deep Dive</h2>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    1. Human-in-the-Loop (HITL) CAPTCHA Resolution
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Instead of building fragile bots that attempt to bypass CAPTCHAs, this platform implements production-grade HITL architecture. When the Playwright agent encounters a CAPTCHA while attempting to download AIS/TIS data, LangGraph pauses the state machine. The CAPTCHA image is instantly routed to the frontend chat UI, prompting the user. Once the user types the solution, the state resumes and Playwright injects the answer seamlessly.</p>
+                    <span class="code-snippet"># Conceptual LangGraph State Node for HITL Pause
+def handle_captcha_node(state: AgentState):
+    if state["requires_captcha"]:
+        # Pause execution, send CAPTCHA image via FastAPI to frontend
+        return {"status": "WAITING_FOR_USER", "action": "SOLVE_CAPTCHA"}
+    
+    # Resume automation once user provides the solution
+    return {"status": "CONTINUE_PORTAL_AUTOMATION"}</span>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    2. Multi-Modal Voice & Multilingual OpenAI Mapping
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>To maximize accessibility, the frontend features microphone integration for Speech-to-Text (STT) and Text-to-Speech (TTS). Users can request tax filings in regional languages (e.g., Hindi, Gujarati). The OpenAI API acts as an intelligent translation and routing layer, converting unstructured, multilingual voice requests into strict JSON variables required by the tax portal, effectively preventing data-entry hallucinations.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    3. Advanced RAG & Data Structuring
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>For CA-related queries, the platform uses a Vector Database to query the entire CA final syllabus. For tax filing, it orchestrates a complex data pipeline: downloading the `prefill.json` and AIS/TIS reports, parsing them into structured Excel tables, and cross-checking for missing data. If fields are missing, the agent triggers another HITL event, dynamically asking the user for the specific missing values before proceeding.</p>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('span');
+                
+                // Toggle active class
+                button.classList.toggle('active');
+                
+                if (button.classList.contains('active')) {
+                    accordionContent.classList.add('active');
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    accordionContent.style.padding = "1.5rem";
+                    icon.textContent = '-';
+                } else {
+                    accordionContent.classList.remove('active');
+                    accordionContent.style.maxHeight = 0;
+                    accordionContent.style.padding = "0 1.5rem";
+                    icon.textContent = '+';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -32,7 +32,8 @@
         }
 
         /* FIX 2: Applied styling to html and body, strictly contained to 100% width */
-        html, body {
+        html,
+        body {
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
@@ -42,7 +43,9 @@
         }
 
         /* --- 3D Depth Classes for Cards & Images --- */
-        .project-card, .skill-category, .profile-img {
+        .project-card,
+        .skill-category,
+        .profile-img {
             transform-style: preserve-3d;
             transform: perspective(1000px);
             transition: box-shadow 0.3s ease;
@@ -50,10 +53,11 @@
 
         .project-img {
             transform: translateZ(40px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .project-info, .skill-category h3 {
+        .project-info,
+        .skill-category h3 {
             transform: translateZ(30px);
         }
 
@@ -61,9 +65,11 @@
             transform: translateZ(40px);
         }
 
-        .project-card:hover, .skill-category:hover,
-        .project-card.js-tilt-glare, .skill-category.js-tilt-glare {
-            box-shadow: 0 25px 50px rgba(56, 189, 248, 0.2), 0 0 20px rgba(0,0,0,0.8);
+        .project-card:hover,
+        .skill-category:hover,
+        .project-card.js-tilt-glare,
+        .skill-category.js-tilt-glare {
+            box-shadow: 0 25px 50px rgba(56, 189, 248, 0.2), 0 0 20px rgba(0, 0, 0, 0.8);
         }
 
         /* Glassmorphism Header */
@@ -304,8 +310,13 @@
             z-index: 1;
         }
 
-        .left { left: 0; }
-        .right { left: 50%; }
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
 
         .left::before {
             content: " ";
@@ -333,7 +344,9 @@
             border-color: transparent var(--bg-card) transparent transparent;
         }
 
-        .right::after { left: -8px; }
+        .right::after {
+            left: -8px;
+        }
 
         .timeline-content {
             padding: 1.5rem;
@@ -404,11 +417,11 @@
         /* Swiper / Projects Grid Fixes */
         .swiper {
             width: 100%;
-            padding: 20px 10px 60px 10px; 
+            padding: 20px 10px 60px 10px;
         }
 
         .swiper-slide {
-            height: auto; 
+            height: auto;
             display: flex;
         }
 
@@ -441,7 +454,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            flex-grow: 1; 
+            flex-grow: 1;
         }
 
         .project-info h3 {
@@ -491,9 +504,18 @@
             opacity: 0.9;
         }
 
-        .swiper-pagination-bullet { background: var(--text-muted); }
-        .swiper-pagination-bullet-active { background: var(--accent); }
-        .swiper-button-next, .swiper-button-prev { color: var(--accent); }
+        .swiper-pagination-bullet {
+            background: var(--text-muted);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--accent);
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--accent);
+        }
 
         /* Contact Section */
         .contact-container {
@@ -507,8 +529,16 @@
             width: 100%;
         }
 
-        .contact-info { flex: 1; min-width: 250px; }
-        .contact-form { flex: 2; min-width: 280px; width: 100%; }
+        .contact-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .contact-form {
+            flex: 2;
+            min-width: 280px;
+            width: 100%;
+        }
 
         .info-item {
             display: flex;
@@ -517,7 +547,10 @@
             margin-bottom: 2rem;
         }
 
-        .info-item p { word-break: break-all; overflow-wrap: break-word; }
+        .info-item p {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
 
         .info-item i {
             font-size: 1.5rem;
@@ -527,8 +560,16 @@
             border-radius: 50%;
         }
 
-        .form-row { display: flex; gap: 1rem; }
-        .form-group { margin-bottom: 1.5rem; flex: 1; width: 100%; }
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            flex: 1;
+            width: 100%;
+        }
 
         .form-control {
             width: 100%;
@@ -541,8 +582,14 @@
             transition: border-color 0.3s;
         }
 
-        .form-control:focus { border-color: var(--accent); }
-        textarea.form-control { resize: vertical; min-height: 120px; }
+        .form-control:focus {
+            border-color: var(--accent);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
 
         .btn-submit {
             background: var(--gradient);
@@ -556,44 +603,108 @@
             transition: opacity 0.3s;
         }
 
-        .btn-submit:hover { opacity: 0.9; }
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
 
         /* --- Mobile Responsive Fixes --- */
         @media screen and (max-width: 768px) {
-            nav { justify-content: space-between; padding: 1rem 5%; }
-            .menu-btn { display: block; order: 2; }
+            nav {
+                justify-content: space-between;
+                padding: 1rem 5%;
+            }
+
+            .menu-btn {
+                display: block;
+                order: 2;
+            }
+
             nav ul {
-                position: absolute; top: 100%; left: 0; width: 100%;
-                background: var(--bg-dark); flex-direction: column;
-                padding: 1.5rem 5%; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 1.5rem 5%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 display: none;
             }
-            nav ul.active { display: flex; }
-            
-            h1 { font-size: 2.2rem; }
-            .subtitle { font-size: 1.1rem; }
-            .profile-img { width: 140px; height: 140px; }
-            section { padding: 4rem 5%; }
-            .section-heading { font-size: 2rem; }
-            
-            .swiper-button-next, .swiper-button-prev {
-                display: none; 
-            }
-            .swiper { padding-bottom: 50px; }
 
-            .contact-container { padding: 1.5rem; gap: 1.5rem; }
-            .form-row { flex-direction: column; gap: 0; }
-            
-            .timeline::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 15px; }
+            nav ul.active {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .profile-img {
+                width: 140px;
+                height: 140px;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+
+            .swiper {
+                padding-bottom: 50px;
+            }
+
+            .contact-container {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 15px;
+            }
+
             .timeline-item::before {
-                left: 60px; border: medium solid white;
+                left: 60px;
+                border: medium solid white;
                 border-width: 10px 10px 10px 0;
                 border-color: transparent var(--bg-card) transparent transparent;
             }
-            .left::after, .right::after { left: 23px; }
-            .right { left: 0%; }
-            .timeline-divider { left: 31px; transform: translateX(-50%); }
+
+            .left::after,
+            .right::after {
+                left: 23px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .timeline-divider {
+                left: 31px;
+                transform: translateX(-50%);
+            }
         }
     </style>
 </head>
@@ -623,7 +734,9 @@
                 <p class="subtitle">Hii, I am <span id="auto-type" style="color: var(--accent)"></span></p>
 
                 <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/prince-bhuva-a83894230?utm_source=share_via&utm_content=profile&utm_medium=member_android"><i class="fa-brands fa-linkedin"></i></a>
+                    <a
+                        href="https://www.linkedin.com/in/prince-bhuva-a83894230?utm_source=share_via&utm_content=profile&utm_medium=member_android"><i
+                            class="fa-brands fa-linkedin"></i></a>
                     <a href="https://www.facebook.com/prince.bhuva.188"><i class="fa-brands fa-facebook"></i></a>
                     <a href="https://github.com/princebhuva21112003"><i class="fa-brands fa-github"></i></a>
                     <a href="#"><i class="fa-brands fa-stack-overflow"></i></a>
@@ -635,20 +748,21 @@
             <h2 class="section-heading"><i class="fa-solid fa-user"></i> About Me</h2>
             <p>
                 I’m <span class="text-highlight">Bhuva Prince</span>, an AI and Machine Learning enthusiast with a
-strong background in <span class="text-highlight">Neural Networks, Large-Language-Models (LLMs),
-and Retrieval-Augmented Generation (RAG)</span>. I work extensively with
-<span class="text-highlight">Python, TensorFlow, Pandas, NumPy, and Scikit-learn</span> to build
-intelligent and data-driven solutions. Alongside AI, I have experience in <span
-class="text-highlight">Next.js, React, and Django</span>,
-allowing me to integrate machine learning models into scalable web and mobile applications. My journey
-started with <span class="text-highlight">Java, Android, and Web development</span>,
-where I built projects using <span class="text-highlight">Java, Firebase, Docker, and
-MySQL</span>. I’ve also solved <span class="text-highlight">500+ Data Structures & Algorithms
-problems</span>
-across platforms like LeetCode, Geeks-for-Geeks, and HackerRank, and I am <span class="text-highlight">GATE qualified</span>, strengthening my problem-solving
-mindset for both development and AI-research. Currently, I am focused on applying <span
-class="text-highlight">deep learning, computer vision,
-and LLM-based architectures</span> to create practical, real-world AI applications.
+                strong background in <span class="text-highlight">Neural Networks, Large-Language-Models (LLMs),
+                    and Retrieval-Augmented Generation (RAG)</span>. I work extensively with
+                <span class="text-highlight">Python, TensorFlow, Pandas, NumPy, and Scikit-learn</span> to build
+                intelligent and data-driven solutions. Alongside AI, I have experience in <span
+                    class="text-highlight">Next.js, React, and Django</span>,
+                allowing me to integrate machine learning models into scalable web and mobile applications. My journey
+                started with <span class="text-highlight">Java, Android, and Web development</span>,
+                where I built projects using <span class="text-highlight">Java, Firebase, Docker, and
+                    MySQL</span>. I’ve also solved <span class="text-highlight">500+ Data Structures & Algorithms
+                    problems</span>
+                across platforms like LeetCode, Geeks-for-Geeks, and HackerRank, and I am <span
+                    class="text-highlight">GATE qualified</span>, strengthening my problem-solving
+                mindset for both development and AI-research. Currently, I am focused on applying <span
+                    class="text-highlight">deep learning, computer vision,
+                    and LLM-based architectures</span> to create practical, real-world AI applications.
             </p>
         </section>
 
@@ -683,7 +797,7 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
                     <div class="skill-tags">
                         <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git/GitHub</span>
                         <span class="skill-tag"><i class="fa-brands fa-aws"></i> AWS</span>
-                         <span class="skill-tag"><i class="fa-solid fa-fire"></i> Firebase</span>
+                        <span class="skill-tag"><i class="fa-solid fa-fire"></i> Firebase</span>
                         <span class="skill-tag"><i class="fa-brands fa-docker"></i> Docker</span>
                         <span class="skill-tag"><i class="fa-solid fa-book"></i> Jupyter Lab</span>
                         <span class="skill-tag"><i class="fa-solid fa-satellite-dish"></i> Postman</span>
@@ -698,19 +812,28 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <img src="https://divineinfosoft.com/wp-content/uploads/2021/01/Group-1.png.webp" class="timeline-logo" alt="Divine Infosoft">
-                            <div><h3>Intern</h3><h4>Divine Infosoft</h4></div>
+                            <img src="https://divineinfosoft.com/wp-content/uploads/2021/01/Group-1.png.webp"
+                                class="timeline-logo" alt="Divine Infosoft">
+                            <div>
+                                <h3>Intern</h3>
+                                <h4>Divine Infosoft</h4>
+                            </div>
                         </div>
                         <span class="timeline-date">Jan 2025 - April 2025</span>
-                        <p>Developed a chatbot application using python, incorporating API libraries for enhanced functionality.</p>
+                        <p>Developed a chatbot application using python, incorporating API libraries for enhanced
+                            functionality.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <img src="https://relevantinc.com/wp-content/uploads/2018/03/Header-Logo_Retina.png" class="timeline-logo" alt="Relevant">
-                            <div><h3>Intern</h3><h4>Relevant</h4></div>
+                            <img src="https://relevantinc.com/wp-content/uploads/2018/03/Header-Logo_Retina.png"
+                                class="timeline-logo" alt="Relevant">
+                            <div>
+                                <h3>Intern</h3>
+                                <h4>Relevant</h4>
+                            </div>
                         </div>
                         <span class="timeline-date">June 2024 - Nov 2024</span>
                         <p>Gained practical experience in python and its libraries, teamwork and project management.</p>
@@ -720,8 +843,12 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <i class="fas fa-building timeline-logo" style="display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--bg-dark);"></i>
-                            <div><h3>Developer</h3><h4>GM INFOTECH</h4></div>
+                            <i class="fas fa-building timeline-logo"
+                                style="display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--bg-dark);"></i>
+                            <div>
+                                <h3>Developer</h3>
+                                <h4>GM INFOTECH</h4>
+                            </div>
                         </div>
                         <span class="timeline-date">June 2025 - July 2026</span>
                         <p>Gain knowledge in LLM, RAG and agentic ai.</p>
@@ -740,8 +867,12 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <img src="https://www.cvmu.edu.in/assets/images/cvm/heaer_logo_final.svg" class="timeline-logo" alt="ADIT Logo">
-                            <div><h3>BE in IT</h3><h4>ADIT</h4></div>
+                            <img src="https://www.cvmu.edu.in/assets/images/cvm/heaer_logo_final.svg"
+                                class="timeline-logo" alt="ADIT Logo">
+                            <div>
+                                <h3>BE in IT</h3>
+                                <h4>ADIT</h4>
+                            </div>
                         </div>
                         <span class="timeline-date">Sept 2021 - April 2025</span>
                         <p>Completed Engineering in Information Technology.</p>
@@ -751,8 +882,12 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <img src="https://play-lh.googleusercontent.com/lEfamXbu_AmUkk6GNFv8rbvW9FoVEkZ5q_v9D4tiplAK9jYAYjD06Nf1RU9xcF3Mcw=w480-h960-rw" class="timeline-logo" alt="Kaushal Vidhyalay">
-                            <div><h3>Secondary Education</h3><h4>Kaushal Vidhyalay</h4></div>
+                            <img src="https://play-lh.googleusercontent.com/lEfamXbu_AmUkk6GNFv8rbvW9FoVEkZ5q_v9D4tiplAK9jYAYjD06Nf1RU9xcF3Mcw=w480-h960-rw"
+                                class="timeline-logo" alt="Kaushal Vidhyalay">
+                            <div>
+                                <h3>Secondary Education</h3>
+                                <h4>Kaushal Vidhyalay</h4>
+                            </div>
                         </div>
                         <span class="timeline-date">July 2017 - Oct 2021</span>
                         <p>Completed 9th to 12th standard.</p>
@@ -773,13 +908,16 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
 
                     <div class="swiper-slide">
                         <div class="project-card">
-                            <img src="AIchatbot.png" alt="AI Chatbot" class="project-img">
+                            <img src="caassist.png" alt="AI Chatbot" class="project-img">
                             <div class="project-info">
-                                <h3>AI Chatbot | Next.js + Web3</h3>
-                                <p>An advanced AI chatbot built with Next.js frontend, Python authentication, and MongoDB. Integrated with MetaMask Ethereum payments.</p>
+                                <h3>CA Assistant / ITR Automation</h3>
+                                <p>An AI-powered CA assistance and ITR automation system that provides syllabus-based
+                                    RAG question answering and conversational tax-filing workflows with document
+                                    processing, browser automation, and human-in-the-loop CAPTCHA handling.</p>
                                 <div class="project-footer">
-                                    <div class="author-info"><img src="j1.png" alt="Author"><span>Clear Convo</span></div>
-                                    <a href="#" class="btn-readmore">Details</a>
+                                    <div class="author-info"><img src="j1.png" alt="Author"><span>CA Assistant</span>
+                                    </div>
+                                    <a href="ca_automation.html" class="btn-readmore">Details</a>
                                 </div>
                             </div>
                         </div>
@@ -787,13 +925,30 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
 
                     <div class="swiper-slide">
                         <div class="project-card">
-                            <img src="RAGbaseaiassistent.png" alt="RAG AI Assistant" class="project-img">
+                            <img src="youtube.png" alt="RAG AI Assistant" class="project-img">
                             <div class="project-info">
-                                <h3>AI Assistant with RAG & SQL</h3>
-                                <p>An intelligent teaching assistant powered by Retrieval-Augmented Generation (RAG) and LLMs, capable of querying SQL data.</p>
+                                <h3>YouTube Recommendation System</h3>
+                                <p>A RAG-powered YouTube recommendation system that uses transcript embeddings and
+                                    vector similarity to recommend relevant videos based on content, with multilingual
+                                    transcript processing, search, and FastAPI integration.</p>
                                 <div class="project-footer">
                                     <div class="author-info"><img src="j1.png" alt="Author"><span>ReGx</span></div>
-                                    <a href="#" class="btn-readmore">Details</a>
+                                    <a href="youtube.html" class="btn-readmore">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="project-card">
+                            <img src="yoloimage.png" alt="Smart E-Commerce" class="project-img">
+                            <div class="project-info">
+                                <h3>YOLO26 Multi-Task Vision</h3>
+                                <p>A high-performance, cloud-ready computer vision system that performs real-time object
+                                    detection and image classification.</p>
+                                <div class="project-footer">
+                                    <div class="author-info"><img src="j1.png" alt="Author"><span>Ecom</span></div>
+                                    <a href="yolo-vision.html" class="btn-readmore">Details</a>
                                 </div>
                             </div>
                         </div>
@@ -804,9 +959,11 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
                             <img src="insurance_charge_prediction.png" alt="Weather Detection" class="project-img">
                             <div class="project-info">
                                 <h3> AI-Powered Insurance Predictor </h3>
-                                <p>An intelligent Android application that extracts user data from uploaded form images using OCR to instantly predict insurance charges.</p>
+                                <p>An intelligent Android application that extracts user data from uploaded form images
+                                    using OCR to instantly predict insurance charges.</p>
                                 <div class="project-footer">
-                                    <div class="author-info"><img src="j1.png" alt="Author"><span>PREDICT CHARGES</span></div>
+                                    <div class="author-info"><img src="j1.png" alt="Author"><span>PREDICT CHARGES</span>
+                                    </div>
                                     <a href="predictive_system.html" class="btn-readmore">Details</a>
                                 </div>
                             </div>
@@ -818,24 +975,12 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
                             <img src="sentiment.png" alt="Mood Prediction App" class="project-img">
                             <div class="project-info">
                                 <h3> Cloud Sentiment Analysis</h3>
-                                <p>An end-to-end machine learning pipeline that predicts user sentiment in real-time. Docker containerized and deployed on AWS EC2.</p>
+                                <p>An end-to-end machine learning pipeline that predicts user sentiment in real-time.
+                                    Docker containerized and deployed on AWS EC2.</p>
                                 <div class="project-footer">
-                                    <div class="author-info"><img src="j1.png" alt="Author"><span>SentimentScope</span></div>
+                                    <div class="author-info"><img src="j1.png" alt="Author"><span>SentimentScope</span>
+                                    </div>
                                     <a href="sentiment_analysis_engine.html" class="btn-readmore">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img src="yoloimage.png" alt="Smart E-Commerce" class="project-img">
-                            <div class="project-info">
-                                <h3>YOLO26 Multi-Task Vision</h3>
-                                <p>A high-performance, cloud-ready computer vision system that performs real-time object detection and image classification.</p>
-                                <div class="project-footer">
-                                    <div class="author-info"><img src="j1.png" alt="Author"><span>Ecom</span></div>
-                                    <a href="yolo-vision.html" class="btn-readmore">Details</a>
                                 </div>
                             </div>
                         </div>
@@ -852,18 +997,37 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
             <h2 class="section-heading"><i class="fa-solid fa-paper-plane"></i> Get In Touch</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <div class="info-item"><i class="fa-solid fa-phone"></i><div><h4>Phone</h4><p>+91 9173180854</p></div></div>
-                    <div class="info-item"><i class="fa-solid fa-envelope"></i><div style="min-width: 0; word-break: break-all;"><h4 >Email</h4><p>princebhuva21112003@gmail.com</p></div></div>
-                    <div class="info-item"><i class="fa-solid fa-location-dot"></i><div><h4>Location</h4><p>Surat, Gujarat</p></div></div>
+                    <div class="info-item"><i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 9173180854</p>
+                        </div>
+                    </div>
+                    <div class="info-item"><i class="fa-solid fa-envelope"></i>
+                        <div style="min-width: 0; word-break: break-all;">
+                            <h4>Email</h4>
+                            <p>princebhuva21112003@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item"><i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Surat, Gujarat</p>
+                        </div>
+                    </div>
                 </div>
 
                 <form class="contact-form" onsubmit="event.preventDefault();">
                     <div class="form-row">
-                        <div class="form-group"><input type="text" class="form-control" placeholder="Your Name" required></div>
-                        <div class="form-group"><input type="email" class="form-control" placeholder="Your Email" required></div>
+                        <div class="form-group"><input type="text" class="form-control" placeholder="Your Name"
+                                required></div>
+                        <div class="form-group"><input type="email" class="form-control" placeholder="Your Email"
+                                required></div>
                     </div>
-                    <div class="form-group"><input type="text" class="form-control" placeholder="Subject" required></div>
-                    <div class="form-group"><textarea class="form-control" placeholder="Say Something..." required></textarea></div>
+                    <div class="form-group"><input type="text" class="form-control" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group"><textarea class="form-control" placeholder="Say Something..."
+                            required></textarea></div>
                     <button type="submit" class="btn-submit">Send Message</button>
                 </form>
             </div>
@@ -911,15 +1075,15 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
                 const timeline = document.getElementById(timelineId);
                 const icon = document.getElementById(iconId);
                 if (!timeline || !icon) return;
-                
+
                 const rect = timeline.getBoundingClientRect();
                 const viewportCenter = window.innerHeight / 2;
                 let scrolledDistance = viewportCenter - rect.top;
-                
+
                 const maxDistance = rect.height;
                 if (scrolledDistance < 0) scrolledDistance = 0;
                 if (scrolledDistance > maxDistance) scrolledDistance = maxDistance;
-                
+
                 icon.style.transform = `translateX(-50%) translateY(${scrolledDistance}px)`;
             };
             moveIconOnScroll("exp-timeline", "plane-icon");
@@ -934,13 +1098,14 @@ and LLM-based architectures</span> to create practical, real-world AI applicatio
 
         // --- 3D Scroll Reveal Animations ---
         const sr = ScrollReveal({ distance: '60px', duration: 1500, delay: 200, reset: true });
-        
+
         sr.reveal('.section-heading, #hero-content, .contact-info', { origin: 'bottom' });
         sr.reveal('.skill-category', { origin: 'bottom', interval: 200 });
-        sr.reveal('.projectSwiper', { origin: 'bottom' }); 
+        sr.reveal('.projectSwiper', { origin: 'bottom' });
         sr.reveal('.timeline-item.left', { origin: 'left' });
         sr.reveal('.timeline-item.right', { origin: 'right' });
         sr.reveal('.contact-form', { origin: 'right' });
     </script>
 </body>
+
 </html>

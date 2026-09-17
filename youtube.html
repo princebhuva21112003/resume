@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Recommendation Engine | Case Study</title>
+    <style>
+        /* CSS Variables for Modern Dark Theme */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            margin-bottom: 3rem;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+        }
+
+        /* Section Styling */
+        .section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Tags */
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Architecture Diagram Container */
+        .diagram-container {
+            width: 100%;
+            background: #111827;
+            border: 2px dashed #334155;
+            border-radius: 12px;
+            margin-top: 1rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .diagram-container pre {
+            margin: 0;
+            font-family: monospace;
+            color: var(--success);
+            line-height: 1.2;
+            font-size: 0.85rem;
+        }
+
+        /* Expandable Accordion */
+        .accordion-item {
+            border: 1px solid #334155;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.02);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: #111827;
+        }
+
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 800px;
+        }
+        
+        .code-snippet {
+            font-family: monospace;
+            background: #000;
+            padding: 1rem;
+            border-radius: 6px;
+            color: var(--success);
+            margin-top: 1rem;
+            display: block;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-bar">
+            <a href="index.html" class="back-btn">
+                <span>←</span> Back to Portfolio
+            </a>
+        </nav>
+
+        <header class="hero">
+            <div class="tech-tags" style="justify-content: center;">
+                <span class="tag">NLP / Embeddings</span>
+                <span class="tag">Vector Database</span>
+                <span class="tag">RAG Architecture</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Docker & AWS</span>
+                <span class="tag">Vanilla JS</span>
+            </div>
+            <h1>NLP-Driven YouTube Recommendation Engine</h1>
+            <p>A content-aware recommendation platform leveraging RAG, cross-lingual transcript processing, and vector embeddings to deliver hyper-relevant video suggestions based on semantic similarity.</p>
+            
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">View Live Demo</a>
+                <a href="#" class="btn btn-outline">View GitHub Repo</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Overview</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">The Engineering Goal</h3>
+                    <p class="text-muted">Standard recommendation systems often rely on shallow metadata or user viewing history. My objective was to build a system that actually "understands" video content. By processing over 2,000 video transcripts, the goal was to create an engine capable of recommending videos based on deep semantic word-matching and contextual similarity, regardless of the original spoken language.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--success); margin-bottom: 0.5rem;">The Approach</h3>
+                    <p class="text-muted">I engineered a robust offline ETL pipeline to download transcripts, automatically translating Hindi content to English for unified processing. The text was chunked, converted into embeddings, and stored in a Vector Database. I built a FastAPI backend that calculates real-time vector similarity. When a user clicks or searches on the HTML/JS frontend, the engine instantly returns the Top 10 most contextually relevant videos. The system is designed to be Dockerized for scalable AWS deployment.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Platform Architecture</h2>
+            <p>Visualizing the data engineering pipeline and the real-time RAG recommendation workflow.</p>
+            <div class="diagram-container">
+                <pre>+-------------------------------------------------------------------------+
+|                            USER INTERFACE                               |
+|       [ HTML/CSS/JS ]      [ Search Bar ]      [ Video Click Event ]    |
++-----------------------------------+-------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                        FASTAPI BACKEND (Docker/AWS)                     |
+|                                                                         |
+|  +-------------------+                        +----------------------+  |
+|  |  Query Processor  |                        |   VECTOR DATABASE    |  |
+|  | (Embeds Search/   |<--- Vector Search ---->| (2000+ Transcripts)  |  |
+|  |  Clicked Video)   |     (Top 10 Match)     | (Chunked Embeddings) |  |
+|  +-------------------+                        +----------------------+  |
++-----------------------------------+-------------------------------------+
+                                    ^
+                                    |
++-----------------------------------|-------------------------------------+
+|                  TRANSCRIPT ETL PIPELINE (Offline Data Ingestion)       |
+|                                                                         |
+| [ Download Transcripts ] -> [ Hindi-to-Eng Translation ] -> [ Storage ] |
+|                                   |                                     |
+| [ Vector DB Insert ] <---- [ Generate Embeddings ] <---- [ Chunking ]   |
++-------------------------------------------------------------------------+</pre>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                <strong>Flow:</strong> Offline ETL Pipeline preps 2000+ translated transcripts → Stored in Vector DB → User clicks video on Frontend → FastAPI runs semantic similarity matching → Top 10 videos returned.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Technical Deep Dive</h2>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    1. Cross-Lingual Transcript ETL Pipeline
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>To ensure high-quality data ingestion, I built a custom data extraction pipeline for 2000 YouTube videos. A major challenge was dealing with regional content. The pipeline detects Hindi transcripts, translates them into English, and saves them locally. This creates a unified, language-agnostic dataset, ensuring that a Hindi video covering a specific tech topic can be successfully matched and recommended alongside an English video covering the same topic.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    2. Semantic Search & RAG Implementation
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Instead of basic keyword matching, the system relies on Vector Embeddings and Retrieval-Augmented Generation (RAG) principles. The translated transcripts are chunked and embedded into a Vector Database. When a user clicks a video, the FastAPI backend takes that video's embeddings and performs a similarity calculation against the entire database, returning the 10 videos with the highest semantic transcript overlap. A manual search bar was also implemented allowing users to search the vector space directly.</p>
+                    <span class="code-snippet"># Conceptual FastAPI Endpoint for Video Recommendation
+@app.get("/api/recommend/{video_id}")
+async def get_recommendations(video_id: str):
+    # 1. Fetch the embedded transcript for the clicked video
+    target_embedding = vector_db.get_embedding(video_id)
+    
+    # 2. Perform similarity search in Vector DB (Top 10 matches)
+    similar_videos = vector_db.similarity_search(
+        query_embedding=target_embedding, 
+        k=10
+    )
+    
+    return {"status": "success", "recommendations": similar_videos}</span>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    3. Planned Infrastructure (Docker & AWS)
+                    <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>While the initial prototype was built locally, the architecture was specifically designed for cloud deployment. The FastAPI backend and Vector Database connections are being containerized using Docker to ensure environment consistency. The final deployment strategy targets AWS (e.g., EC2 or ECS), allowing the API to scale dynamically to handle high-volume recommendation requests.</p>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('span');
+                
+                // Toggle active class
+                button.classList.toggle('active');
+                
+                if (button.classList.contains('active')) {
+                    accordionContent.classList.add('active');
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    accordionContent.style.padding = "1.5rem";
+                    icon.textContent = '-';
+                } else {
+                    accordionContent.classList.remove('active');
+                    accordionContent.style.maxHeight = 0;
+                    accordionContent.style.padding = "0 1.5rem";
+                    icon.textContent = '+';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
